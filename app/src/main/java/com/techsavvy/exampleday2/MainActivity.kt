@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.techsavvy.exampleday2.navigation.NavHostMap
 import com.techsavvy.exampleday2.ui.theme.ExampleDay2Theme
 
 class MainActivity : ComponentActivity() {
@@ -103,14 +104,17 @@ class MainActivity : ComponentActivity() {
                         })
                     }
                 }*/
-                Column(
+
+                /*Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
                 ){
                     TechSavvyCard()
 
-                }
+                }*/
+
+                NavHostMap()
 
             }
         }

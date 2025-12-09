@@ -2,12 +2,12 @@ package com.techsavvy.exampleday2.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.techsavvy.exampleday2.ui.screens.HomeScreen
+import com.techsavvy.exampleday2.ui.home.HomeScreen
 import com.techsavvy.exampleday2.ui.screens.LoginScreen
 import com.techsavvy.exampleday2.ui.screens.RegisterScreen
 
@@ -42,8 +42,7 @@ fun NavHostMap(modifier: Modifier = Modifier) {
         }
 
         composable(Screens.Home.route){
-            HomeScreen(navController = navController)
-
+            HomeScreen(hiltViewModel(), navController = navController)
         }
 
 

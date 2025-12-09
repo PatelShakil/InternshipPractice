@@ -40,7 +40,9 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.techsavvy.exampleday2.navigation.NavHostMap
 import com.techsavvy.exampleday2.ui.theme.ExampleDay2Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

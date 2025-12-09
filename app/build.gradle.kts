@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -67,5 +69,13 @@ dependencies {
     //Navigation Dependency
     implementation("androidx.navigation:navigation-compose:2.9.6")
 
+    //dependency injection
+    implementation (libs.androidx.hilt.navigation.compose)
+    implementation (libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
+
+    //Extended Icons
+    implementation(libs.androidx.compose.material.icons.extended)
 
 }

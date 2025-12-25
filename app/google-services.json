@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "779553703038",
+    "firebase_url": "https://example-user-fb-default-rtdb.firebaseio.com",
+    "project_id": "example-user-fb",
+    "storage_bucket": "example-user-fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779553703038:android:1c4a6cb44901d987ee842f",
+        "android_client_info": {
+          "package_name": "com.techsavvy.exampleday2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8c0XPS4USyX0tbpzMZzxwcfH1h2SkxfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

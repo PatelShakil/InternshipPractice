@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.techsavvy.exampleday2.ui.home.HomeScreen
-import com.techsavvy.exampleday2.ui.screens.LoginScreen
-import com.techsavvy.exampleday2.ui.screens.RegisterScreen
+import com.techsavvy.exampleday2.ui.auth.LoginScreen
+import com.techsavvy.exampleday2.ui.auth.RegisterScreen
 
 @Composable
 fun NavHostMap(modifier: Modifier = Modifier) {
@@ -21,24 +21,16 @@ fun NavHostMap(modifier: Modifier = Modifier) {
         startDestination = Screens.Login.route
     ){
         composable(Screens.Login.route){
-            LoginScreen(navController = navController)
+            LoginScreen(hiltViewModel(),navController = navController)
         }
         //share name to register screen
 
         composable(
-            Screens.Register.route + "/{name}",
-            arguments = listOf(
-                navArgument(
-                    name = "name",
-                    builder = {
-                        defaultValue = "ABCD"
-                    }
-                )
-            )
+            Screens.Register.route,
         ){
 //            String? vs String
 //            String
-            RegisterScreen(name = it.arguments?.getString("name")!!, navController = navController)
+            RegisterScreen(hiltViewModel(),  navController = navController)
         }
 
         composable(Screens.Home.route){

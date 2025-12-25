@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -78,4 +80,23 @@ dependencies {
     //Extended Icons
     implementation(libs.androidx.compose.material.icons.extended)
 
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    //auth
+    implementation("com.google.firebase:firebase-auth")
+    //Firestore
+    implementation("com.google.firebase:firebase-firestore")
+
+    // Ktor Client
+        implementation("io.ktor:ktor-client-android:3.3.3")
+        implementation("io.ktor:ktor-client-content-negotiation:3.3.3")
+        implementation("io.ktor:ktor-serialization-kotlinx-json:3.3.3")
+        implementation("io.ktor:ktor-client-logging:3.3.3")
+        implementation("io.ktor:ktor-client-auth:3.3.3")
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

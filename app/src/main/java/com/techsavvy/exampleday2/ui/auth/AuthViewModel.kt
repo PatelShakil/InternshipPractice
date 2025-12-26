@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import com.techsavvy.exampleday2.data.api.AuthApi
 import com.techsavvy.exampleday2.models.User
 import com.techsavvy.exampleday2.utility.Resource
@@ -59,6 +60,64 @@ class AuthViewModel @Inject constructor(
                         Log.d("REGISTER",it.result.user?.email.toString())
                         //always ignore password
                         val user = User(email,password)
+                        data class Block(val id : String="", val name : String)
+                        val block = Block("","Block 1")
+                        val id = store.collection("blocks")
+                            .document().id
+
+                        block.copy(id = id)
+                        //how to assign document id to block id
+                        store.collection("blocks")
+                            .document(block.id)
+                            .set(block)
+                            .addOnCompleteListener {
+                                if(it.isComplete){
+                                    if(it.isSuccessful){
+                                        Log.d("BLOCK CREATED","Block Created Successfully")
+                                    }
+                                }
+                            }
+
+                        val blocks = mutableListOf<Block>()
+
+                        store.collection("blocks")
+                            .addSnapshotListener {
+                                value,error ->
+                                if(error != null){
+                                    Log.d("ERROR",error.message.toString())
+                                }else{
+                                    if(value != null){
+                                        for(doc in value){
+                                            blocks.add(doc.toObject<Block>())
+                                        }
+                                    }
+                                }
+                            }
+
+                        data class Floor(val id : String,val name :String,val blockId:String,val block : Block? = null)
+                        val floors = mutableListOf<Floor>()
+
+                        store.collection("floors")
+                            .whereEqualTo("blockId",block.id)
+                            .addSnapshotListener {
+                                value,error ->
+                                if(error != null){
+                                    Log.d("ERROR",error.message.toString())
+                                }else{
+                                    if(value != null){
+                                        for(doc in value){
+                                            val floor = doc.toObject<Floor>()
+                                            val b = store.collection("blocks")
+                                                .document(floor.blockId)
+                                                .get()
+                                                .result.toObject<Block>()
+                                            floor.copy(block = b)
+                                            floors.add(doc.toObject<Floor>())
+                                        }
+                                    }
+                                }
+                            }
+
                         store.collection("users")
                             .document(it.result.user?.uid.toString())
                             .set(user)
